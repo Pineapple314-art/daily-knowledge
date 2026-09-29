@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>每日杂学 · 随机知识推荐</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #faf8f5;
+    --bg-secondary: #f0ebe4;
+    --bg-card: #ffffff;
+    --text-primary: #2c2825;
+    --text-secondary: #6b6560;
+    --text-muted: #a09990;
+    --accent: #c17f3e;
+    --accent-light: #e8d5bc;
+    --accent-dark: #9c6429;
+    --cold: #5b8aa6;
+    --hot: #c1573e;
+    --border: #e5ddd4;
+    --shadow: 0 4px 24px rgba(44, 40, 37, 0.08);
+    --shadow-hover: 0 8px 32px rgba(44, 40, 37, 0.12);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(193, 127, 62, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(91, 138, 166, 0.04) 0%, transparent 50%);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* 顶部导航 */
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  .logo .dot {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .date-display {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  /* 知识卡片 */
+  .card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--cold));
+    opacity: 0.8;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .category-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .type-badge.cold {
+    background: rgba(91, 138, 166, 0.1);
+    color: var(--cold);
+  }
+
+  .type-badge.hot {
+    background: rgba(193, 87, 62, 0.1);
+    color: var(--hot);
+  }
+
+  .difficulty {
+    display: flex;
+    gap: 3px;
+    margin-top: 8px;
+  }
+
+  .difficulty .star {
+    font-size: 12px;
+    color: var(--border);
+  }
+
+  .difficulty .star.filled {
+    color: var(--accent);
+  }
+
+  .card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .card-content {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .card-content p {
+    margin-bottom: 12px;
+  }
+
+  .card-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 来源区域 */
+  .source-section {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 8px;
+  }
+
+  .source-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .source-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .source-name {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .reliability {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+  }
+
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 6px;
+    transition: color 0.2s;
+  }
+
+  .source-link:hover {
+    color: var(--accent-dark);
+  }
+
+  /* 批判性思维区域 */
+  .thinking-section {
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+  }
+
+  .thinking-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .thinking-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .thinking-label {
+    flex: 1;
+  }
+
+  .thinking-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .thinking-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .thinking-arrow {
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+  }
+
+  .thinking-section.open .thinking-arrow {
+    transform: rotate(180deg);
+  }
+
+  .thinking-questions {
+    display: none;
+    margin-top: 16px;
+  }
+
+  .thinking-section.open .thinking-questions {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question-item {
+    padding: 12px 16px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .question-item::before {
+    content: '?';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .question-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .thinking-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* 操作按钮区 */
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: inherit;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(193, 127, 62, 0.3);
+  }
+
+  .btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--border);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  /* 底部信息 */
+  .footer {
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* 设置面板 */
+  .settings-panel {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    display: none;
+  }
+
+  .settings-panel.open {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .settings-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .setting-item:last-child {
+    border-bottom: none;
+  }
+
+  .setting-info {
+    flex: 1;
+  }
+
+  .setting-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .setting-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* 开关按钮 */
+  .toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 28px;
+    cursor: pointer;
+  }
+
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--border);
+    border-radius: 28px;
+    transition: 0.3s;
+  }
+
+  .toggle-slider::before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+
+  input:checked + .toggle-slider {
+    background: var(--accent);
+  }
+
+  input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+  }
+
+  /* 时间选择 */
+  .time-picker {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .time-picker:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* 分类筛选 */
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .filter-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    user-select: none;
+  }
+
+  .filter-chip:hover {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+  }
+
+  .filter-chip.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .filter-chip.all {
+    background: var(--text-primary);
+    color: white;
+  }
+
+  .filter-chip.all.active {
+    background: var(--accent);
+  }
+
+  /* 动画 */
+  @keyframes cardEnter {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .card.entering {
+    animation: cardEnter 0.4s ease;
+  }
+
+  /* 响应式 */
+  @media (max-width: 480px) {
+    .container {
+      padding: 20px 14px 60px;
+    }
+
+    .card {
+      padding: 24px 20px;
+      border-radius: 16px;
+    }
+
+    .card-title {
+      font-size: 19px;
+    }
+
+    .card-content {
+      font-size: 14px;
+    }
+
+    .btn {
+      min-width: 120px;
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+  }
+
+  /* 每日标记 */
+  .daily-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, var(--accent), var(--hot));
+    color: white;
+    font-size: 11px;
+    border-radius: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .view-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    text-align: right;
+  }
+
+  /* 设置按钮 */
+  .settings-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(193, 127, 62, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: all 0.3s;
+    z-index: 100;
+  }
+
+  .settings-btn:hover {
+    transform: rotate(30deg) scale(1.1);
+  }
+
+  @media (max-width: 480px) {
+    .settings-btn {
+      width: 48px;
+      height: 48px;
+      bottom: 16px;
+      right: 16px;
+      font-size: 20px;
+    }
+  }
+
+  /* AI 问答面板 */
+  .ai-panel {
+    background: var(--bg-card);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .ai-panel-header {
+    padding: 16px 24px;
+    background: linear-gradient(135deg, rgba(193, 127, 62, 0.08), rgba(91, 138, 166, 0.08));
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+  }
+
+  .ai-panel-header:hover {
+    background: linear-gradient(135deg, rgba(193, 127, 62, 0.12), rgba(91, 138, 166, 0.12));
+  }
+
+  .ai-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--cold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .ai-header-text {
+    flex: 1;
+  }
+
+  .ai-header-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .ai-header-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .ai-status {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: #e8f5e9;
+    color: #4caf50;
+  }
+
+  .ai-status.disabled {
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+  }
+
+  .ai-arrow {
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+  }
+
+  .ai-panel.open .ai-arrow {
+    transform: rotate(180deg);
+  }
+
+  .ai-panel-body {
+    display: none;
+    max-height: 500px;
+    flex-direction: column;
+  }
+
+  .ai-panel.open .ai-panel-body {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .ai-messages {
+    flex: 1;
+    padding: 20px 24px;
+    overflow-y: auto;
+    max-height: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .ai-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .ai-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .ai-messages::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  .ai-message {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    word-wrap: break-word;
+  }
+
+  .ai-message.user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+
+  .ai-message.assistant {
+    align-self: flex-start;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-bottom-left-radius: 4px;
+  }
+
+  .ai-message.assistant p {
+    margin-bottom: 8px;
+  }
+
+  .ai-message.assistant p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-message.assistant strong {
+    color: var(--text-primary);
+  }
+
+  .ai-typing {
+    align-self: flex-start;
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: var(--bg-secondary);
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .ai-typing span {
+    width: 6px;
+    height: 6px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+  }
+
+  .ai-typing span:nth-child(1) { animation-delay: -0.32s; }
+  .ai-typing span:nth-child(2) { animation-delay: -0.16s; }
+
+  @keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+    40% { transform: scale(1.2); opacity: 1; }
+  }
+
+  .ai-input-area {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .ai-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    resize: none;
+    min-height: 40px;
+    max-height: 100px;
+    font-family: inherit;
+    line-height: 1.5;
+  }
+
+  .ai-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .ai-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .ai-send-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .ai-send-btn:hover:not(:disabled) {
+    background: var(--accent-dark);
+  }
+
+  .ai-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ai-welcome {
+    text-align: center;
+    padding: 20px 10px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .ai-welcome-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .ai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .ai-suggestion-chip {
+    padding: 6px 12px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .ai-suggestion-chip:hover {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    border-color: var(--accent-light);
+  }
+
+  .ai-error {
+    align-self: flex-start;
+    padding: 12px 16px;
+    background: rgba(244, 67, 54, 0.1);
+    color: #e53935;
+    border-radius: 12px;
+    font-size: 13px;
+    border-bottom-left-radius: 4px;
+  }
+
+  /* 设置面板中的 AI 设置 */
+  .api-input {
+    width: 180px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    font-family: inherit;
+  }
+
+  .api-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .api-input.password {
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+
+  .setting-sub-group {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .setting-sub-group:last-child {
+    border-bottom: none;
+  }
+
+  .setting-group-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  @media (max-width: 480px) {
+    .ai-panel-header {
+      padding: 14px 18px;
+    }
+
+    .ai-messages {
+      padding: 16px 18px;
+      max-height: 320px;
+    }
+
+    .ai-input-area {
+      padding: 12px 18px;
+    }
+
+    .ai-message {
+      max-width: 90%;
+      font-size: 13px;
+    }
+
+    .api-input {
+      width: 140px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- 顶部 -->
+  <div class="header">
+    <div class="logo">每日杂学<span class="dot">.</span></div>
+    <div class="subtitle">随机 · 杂学 · 冷知识与热思考</div>
+    <div class="date-display" id="dateDisplay"></div>
+  </div>
+
+  <!-- 分类筛选 -->
+  <div class="category-filters" id="categoryFilters"></div>
+
+  <!-- 知识卡片 -->
+  <div class="card entering" id="knowledgeCard">
+    <div class="daily-badge" id="dailyBadge">今日推荐</div>
+    
+    <div class="card-header">
+      <div>
+        <span class="category-tag" id="categoryTag">分类</span>
+        <div class="difficulty" id="difficultyStars"></div>
+      </div>
+      <span class="type-badge" id="typeBadge">冷知识</span>
+    </div>
+
+    <h2 class="card-title" id="knowledgeTitle">知识标题</h2>
+
+    <div class="card-content" id="knowledgeContent">
+      <p>知识内容...</p>
+    </div>
+
+    <!-- 来源 -->
+    <div class="source-section">
+      <div class="source-label">📚 知识来源</div>
+      <div class="source-info">
+        <div>
+          <div class="source-name" id="sourceName">来源名称</div>
+          <a href="#" target="_blank" class="source-link" id="sourceLink">
+            🔗 查看来源
+          </a>
+        </div>
+        <span class="reliability" id="reliability">可信度：高</span>
+      </div>
+    </div>
+
+    <!-- 批判性思维 -->
+    <div class="thinking-section" id="thinkingSection">
+      <div class="thinking-toggle" onclick="toggleThinking()">
+        <div class="thinking-icon">🧠</div>
+        <div class="thinking-label">
+          <div class="thinking-title">批判性思考</div>
+          <div class="thinking-desc">几个问题，启发更深的思考</div>
+        </div>
+        <div class="thinking-arrow">▼</div>
+      </div>
+      <div class="thinking-questions" id="thinkingQuestions"></div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="actions">
+      <button class="btn btn-primary" onclick="randomKnowledge()">
+        🎲 换一条随机知识
+      </button>
+      <button class="btn btn-secondary" onclick="showDaily()">
+        📅 今日知识
+      </button>
+    </div>
+
+    <div class="view-count" id="viewCount">今日已浏览 0 条</div>
+  </div>
+
+  <!-- AI 问答面板 -->
+  <div class="ai-panel" id="aiPanel">
+    <div class="ai-panel-header" onclick="toggleAIPanel()">
+      <div class="ai-icon">🤖</div>
+      <div class="ai-header-text">
+        <div class="ai-header-title">AI 知识助手</div>
+        <div class="ai-header-desc">针对当前知识提问，引导批判性思考</div>
+      </div>
+      <span class="ai-status" id="aiStatus">未配置</span>
+      <div class="ai-arrow">▼</div>
+    </div>
+    <div class="ai-panel-body">
+      <div class="ai-messages" id="aiMessages">
+        <div class="ai-welcome" id="aiWelcome">
+          <div class="ai-welcome-icon">💡</div>
+          <div>内置 AI 已就绪！直接提问，或点击下方快捷问题</div>
+          <div class="ai-suggestions" id="aiSuggestions">
+            <span class="ai-suggestion-chip" onclick="askAI('这个知识是真的吗？')">这个知识是真的吗？</span>
+            <span class="ai-suggestion-chip" onclick="askAI('用更简单的话解释一下')">用更简单的话解释一下</span>
+            <span class="ai-suggestion-chip" onclick="askAI('还有什么相关的冷知识？')">还有什么相关的冷知识？</span>
+          </div>
+        </div>
+      </div>
+      <div class="ai-input-area">
+        <textarea class="ai-input" id="aiInput" placeholder="输入你的问题... (Enter发送，Shift+Enter换行)" rows="1" onkeydown="handleAIInput(event)" oninput="autoResizeTextarea(this)"></textarea>
+        <button class="ai-send-btn" id="aiSendBtn" onclick="sendAIMessage()" disabled>发送</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 设置面板 -->
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-title">⚙️ 设置</div>
+    
+    <div class="setting-item">
+      <div class="setting-info">
+        <div class="setting-name">每日通知</div>
+        <div class="setting-desc">每天定时推送一条随机知识</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="notifyToggle" onchange="toggleNotification()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-item">
+      <div class="setting-info">
+        <div class="setting-name">通知时间</div>
+        <div class="setting-desc">选择每日推送时间</div>
+      </div>
+      <input type="time" class="time-picker" id="notifyTime" value="09:00" onchange="saveNotifyTime()">
+    </div>
+
+    <div class="setting-item">
+      <div class="setting-info">
+        <div class="setting-name">默认打开思考</div>
+        <div class="setting-desc">每次加载知识自动展开批判性思考</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="autoThinkingToggle" onchange="toggleAutoThinking()">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-sub-group">
+      <div class="setting-group-title">🤖 AI 助手设置</div>
+      
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">API 地址</div>
+          <div class="setting-desc">内置免费接口，也可改为 OpenAI 兼容地址</div>
+        </div>
+        <input type="text" class="api-input" id="apiBaseUrl" value="https://text.pollinations.ai" placeholder="https://..." onchange="saveAPISettings()">
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">API Key（可选）</div>
+          <div class="setting-desc">留空使用内置免费 AI，填写则用你自己的</div>
+        </div>
+        <input type="password" class="api-input password" id="apiKey" placeholder="留空=内置免费，填写=自定义" onchange="saveAPISettings()">
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">模型</div>
+          <div class="setting-desc">内置接口用 openai，自定义改为对应模型名</div>
+        </div>
+        <input type="text" class="api-input" id="apiModel" value="openai" placeholder="openai" onchange="saveAPISettings()">
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">AI 思考风格</div>
+          <div class="setting-desc">回答时是否侧重引导思考</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="aiSocraticToggle" checked onchange="saveAPISettings()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部统计 -->
+  <div class="footer">
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">知识条目</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statCategories">0</div>
+        <div class="stat-label">领域分类</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statCold">0</div>
+        <div class="stat-label">冷知识</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="statHot">0</div>
+        <div class="stat-label">热知识</div>
+      </div>
+    </div>
+    <div class="footer-text">
+      没有算法 · 没有偏好 · 纯随机的杂学之旅<br>
+      每条知识均附带来源，请自行验证真伪
+    </div>
+  </div>
+</div>
+
+<!-- 设置按钮 -->
+<button class="settings-btn" onclick="toggleSettings()" title="设置">⚙️</button>
+
+<script src="knowledge.js"></script>
+<script>
+  // 状态
+  let currentKnowledge = null;
+  let todayKnowledge = null;
+  let viewedIds = JSON.parse(localStorage.getItem('viewedIds') || '[]');
+  let todayViewCount = parseInt(localStorage.getItem('todayViewCount') || '0');
+  let lastViewDate = localStorage.getItem('lastViewDate');
+  let currentCategory = 'all';
+  let notifyTimer = null;
+
+  // 初始化
+  function init() {
+    // 日期显示
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long'
+    });
+    document.getElementById('dateDisplay').textContent = dateStr;
+
+    // 重置今日浏览计数
+    const todayStr = today.toDateString();
+    if (lastViewDate !== todayStr) {
+      todayViewCount = 0;
+      lastViewDate = todayStr;
+      localStorage.setItem('lastViewDate', todayStr);
+      localStorage.setItem('todayViewCount', '0');
+    }
+
+    // 加载统计
+    const stats = getStats();
+    document.getElementById('statTotal').textContent = stats.total;
+    document.getElementById('statCategories').textContent = stats.categories;
+    document.getElementById('statCold').textContent = stats.coldCount;
+    document.getElementById('statHot').textContent = stats.hotCount;
+
+    // 加载分类筛选
+    renderCategoryFilters();
+
+    // 加载今日知识
+    todayKnowledge = getDailyKnowledge(today);
+    showDaily();
+
+    // 加载设置
+    loadSettings();
+
+    // 初始化通知定时器
+    initNotificationTimer();
+
+    // 初始化 AI 助手
+    loadAISettings();
+    updateAIStatus();
+  }
+
+  // 渲染分类筛选
+  function renderCategoryFilters() {
+    const categories = getCategories();
+    const container = document.getElementById('categoryFilters');
+    
+    let html = `<span class="filter-chip all active" onclick="filterByCategory('all', this)">全部</span>`;
+    categories.forEach(cat => {
+      html += `<span class="filter-chip" onclick="filterByCategory('${cat}', this)">${cat}</span>`;
+    });
+    container.innerHTML = html;
+  }
+
+  // 分类筛选
+  function filterByCategory(category, element) {
+    currentCategory = category;
+    
+    // 更新选中状态
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.classList.remove('active');
+    });
+    element.classList.add('active');
+  }
+
+  // 显示知识
+  function displayKnowledge(knowledge, isDaily = false) {
+    currentKnowledge = knowledge;
+    
+    const card = document.getElementById('knowledgeCard');
+    card.classList.remove('entering');
+    void card.offsetWidth; // 触发重排
+    card.classList.add('entering');
+
+    // 重置 AI 对话上下文（切换知识时）
+    if (typeof resetAIContext === 'function' && aiMessages.length > 0) {
+      resetAIContext();
+    }
+
+    // 每日徽章
+    const badge = document.getElementById('dailyBadge');
+    badge.style.display = isDaily ? 'block' : 'none';
+
+    // 分类标签
+    document.getElementById('categoryTag').textContent = knowledge.category;
+
+    // 类型徽章
+    const typeBadge = document.getElementById('typeBadge');
+    typeBadge.className = 'type-badge ' + knowledge.type;
+    typeBadge.textContent = knowledge.type === 'cold' ? '❄️ 冷知识' : '🔥 热知识';
+
+    // 难度星级
+    const difficultyStars = document.getElementById('difficultyStars');
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+      starsHtml += `<span class="star ${i <= knowledge.difficulty ? 'filled' : ''}">★</span>`;
+    }
+    difficultyStars.innerHTML = starsHtml;
+
+    // 标题
+    document.getElementById('knowledgeTitle').textContent = knowledge.title;
+
+    // 内容
+    document.getElementById('knowledgeContent').innerHTML = 
+      knowledge.content.split('\n').map(p => p.trim() ? `<p>${p.trim()}</p>` : '').join('');
+
+    // 来源
+    document.getElementById('sourceName').textContent = knowledge.source.name;
+    const sourceLink = document.getElementById('sourceLink');
+    sourceLink.href = knowledge.source.url;
+
+    // 可信度
+    const reliabilityEl = document.getElementById('reliability');
+    reliabilityEl.textContent = '可信度：' + knowledge.source.reliability;
+    if (knowledge.source.reliability === '高') {
+      reliabilityEl.style.background = 'rgba(76, 175, 80, 0.1)';
+      reliabilityEl.style.color = '#4caf50';
+    } else {
+      reliabilityEl.style.background = 'rgba(255, 152, 0, 0.1)';
+      reliabilityEl.style.color = '#ff9800';
+    }
+
+    // 批判性思考问题
+    const questionsContainer = document.getElementById('thinkingQuestions');
+    questionsContainer.innerHTML = knowledge.questions.map(q => 
+      `<div class="question-item">${q}</div>`
+    ).join('') + '<div class="thinking-note">没有标准答案，重要的是思考本身</div>';
+
+    // 自动展开思考
+    const autoThinking = localStorage.getItem('autoThinking') === 'true';
+    const thinkingSection = document.getElementById('thinkingSection');
+    if (autoThinking) {
+      thinkingSection.classList.add('open');
+    } else {
+      thinkingSection.classList.remove('open');
+    }
+
+    // 更新浏览计数
+    if (!viewedIds.includes(knowledge.id)) {
+      viewedIds.push(knowledge.id);
+      localStorage.setItem('viewedIds', JSON.stringify(viewedIds));
+    }
+    
+    todayViewCount++;
+    localStorage.setItem('todayViewCount', todayViewCount.toString());
+    document.getElementById('viewCount').textContent = `今日已浏览 ${todayViewCount} 条`;
+  }
+
+  // 随机知识
+  function randomKnowledge() {
+    let pool;
+    if (currentCategory === 'all') {
+      pool = knowledgeBase;
+    } else {
+      pool = getByCategory(currentCategory);
+    }
+
+    if (pool.length === 0) return;
+
+    // 尽量不重复，但如果只剩几条就允许重复
+    let available = pool.filter(k => !viewedIds.includes(k.id));
+    if (available.length < 3) {
+      available = pool;
+      // 排除当前这条
+      if (currentKnowledge) {
+        available = available.filter(k => k.id !== currentKnowledge.id);
+      }
+    }
+
+    const randomIndex = Math.floor(Math.random() * available.length);
+    displayKnowledge(available[randomIndex], false);
+  }
+
+  // 显示今日知识
+  function showDaily() {
+    if (todayKnowledge) {
+      displayKnowledge(todayKnowledge, true);
+    }
+  }
+
+  // 切换批判性思考
+  function toggleThinking() {
+    document.getElementById('thinkingSection').classList.toggle('open');
+  }
+
+  // 切换设置面板
+  function toggleSettings() {
+    document.getElementById('settingsPanel').classList.toggle('open');
+  }
+
+  // 加载设置
+  function loadSettings() {
+    const notifyEnabled = localStorage.getItem('notifyEnabled') === 'true';
+    document.getElementById('notifyToggle').checked = notifyEnabled;
+
+    const notifyTime = localStorage.getItem('notifyTime') || '09:00';
+    document.getElementById('notifyTime').value = notifyTime;
+
+    const autoThinking = localStorage.getItem('autoThinking') === 'true';
+    document.getElementById('autoThinkingToggle').checked = autoThinking;
+  }
+
+  // 切换通知
+  function toggleNotification() {
+    const enabled = document.getElementById('notifyToggle').checked;
+    
+    if (enabled) {
+      // 请求通知权限
+      if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            localStorage.setItem('notifyEnabled', 'true');
+            initNotificationTimer();
+            showToast('通知已开启，每天将在设定时间推送知识');
+          } else {
+            document.getElementById('notifyToggle').checked = false;
+            showToast('需要通知权限才能开启每日推送');
+          }
+        });
+      } else {
+        document.getElementById('notifyToggle').checked = false;
+        showToast('您的浏览器不支持通知功能');
+      }
+    } else {
+      localStorage.setItem('notifyEnabled', 'false');
+      if (notifyTimer) {
+        clearTimeout(notifyTimer);
+        notifyTimer = null;
+      }
+      showToast('通知已关闭');
+    }
+  }
+
+  // 保存通知时间
+  function saveNotifyTime() {
+    const time = document.getElementById('notifyTime').value;
+    localStorage.setItem('notifyTime', time);
+    initNotificationTimer();
+  }
+
+  // 初始化通知定时器
+  function initNotificationTimer() {
+    if (notifyTimer) {
+      clearTimeout(notifyTimer);
+      notifyTimer = null;
+    }
+
+    const enabled = localStorage.getItem('notifyEnabled') === 'true';
+    if (!enabled) return;
+
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+
+    const timeStr = localStorage.getItem('notifyTime') || '09:00';
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    
+    const now = new Date();
+    const nextNotify = new Date();
+    nextNotify.setHours(hours, minutes, 0, 0);
+    
+    if (nextNotify <= now) {
+      nextNotify.setDate(nextNotify.getDate() + 1);
+    }
+
+    const delay = nextNotify - now;
+    
+    notifyTimer = setTimeout(() => {
+      sendDailyNotification();
+      // 设置明天的通知
+      initNotificationTimer();
+    }, delay);
+  }
+
+  // 发送每日通知
+  function sendDailyNotification() {
+    const today = new Date();
+    const knowledge = getDailyKnowledge(today);
+    
+    if (Notification.permission === 'granted') {
+      const notification = new Notification('每日杂学 · ' + knowledge.category, {
+        body: knowledge.title + ' — 点击了解更多',
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📚</text></svg>',
+        badge: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📚</text></svg>',
+        tag: 'daily-knowledge'
+      });
+
+      notification.onclick = function() {
+        window.focus();
+        this.close();
+      };
+    }
+  }
+
+  // 切换自动展开思考
+  function toggleAutoThinking() {
+    const enabled = document.getElementById('autoThinkingToggle').checked;
+    localStorage.setItem('autoThinking', enabled.toString());
+  }
+
+  // ========== AI 助手功能 ==========
+  let aiMessages = [];
+  let aiLoading = false;
+  let currentKnowledgeForAI = null;
+
+  // 默认使用 Pollinations 免费 AI 接口，无需 API Key
+  const DEFAULT_AI_BASE = 'https://text.pollinations.ai';
+  const DEFAULT_AI_MODEL = 'openai';
+
+  function getAIConfig() {
+    return {
+      baseUrl: localStorage.getItem('aiBaseUrl') || DEFAULT_AI_BASE,
+      apiKey: localStorage.getItem('aiApiKey') || '',
+      model: localStorage.getItem('aiModel') || DEFAULT_AI_MODEL,
+      socratic: localStorage.getItem('aiSocratic') !== 'false'
+    };
+  }
+
+  // 是否使用内置免费接口（无 API Key 时走 Pollinations）
+  function isUsingDefaultAI() {
+    const config = getAIConfig();
+    return config.apiKey.trim().length === 0;
+  }
+
+  function isAIConfigured() {
+    return true;
+  }
+
+  function updateAIStatus() {
+    const statusEl = document.getElementById('aiStatus');
+    const sendBtn = document.getElementById('aiSendBtn');
+    const input = document.getElementById('aiInput');
+
+    const usingDefault = isUsingDefaultAI();
+    if (usingDefault) {
+      statusEl.textContent = '内置 AI';
+      statusEl.className = 'ai-status';
+    } else {
+      statusEl.textContent = '已就绪';
+      statusEl.className = 'ai-status';
+    }
+    sendBtn.disabled = false;
+    input.placeholder = '输入你的问题... (Enter发送，Shift+Enter换行)';
+  }
+
+  // 保存 AI 设置
+  function saveAPISettings() {
+    const baseUrl = document.getElementById('apiBaseUrl').value.trim();
+    const apiKey = document.getElementById('apiKey').value.trim();
+    const model = document.getElementById('apiModel').value.trim();
+    const socratic = document.getElementById('aiSocraticToggle').checked;
+
+    if (baseUrl) localStorage.setItem('aiBaseUrl', baseUrl);
+    if (apiKey) localStorage.setItem('aiApiKey', apiKey);
+    if (model) localStorage.setItem('aiModel', model);
+    localStorage.setItem('aiSocratic', socratic.toString());
+
+    updateAIStatus();
+    showToast('AI 设置已保存');
+  }
+
+  // 加载 AI 设置到表单
+  function loadAISettings() {
+    // 版本迁移：AI_CONFIG_VERSION=2 代表内置免费 Pollinations 接口
+    const configVersion = localStorage.getItem('aiConfigVersion');
+    if (configVersion !== '2') {
+      // 清除所有旧版 AI 配置，使用新的内置免费接口
+      localStorage.removeItem('aiBaseUrl');
+      localStorage.removeItem('aiApiKey');
+      localStorage.removeItem('aiModel');
+      localStorage.setItem('aiConfigVersion', '2');
+    }
+
+    const config = getAIConfig();
+    document.getElementById('apiBaseUrl').value = config.baseUrl;
+    document.getElementById('apiKey').value = config.apiKey;
+    document.getElementById('apiModel').value = config.model;
+    document.getElementById('aiSocraticToggle').checked = config.socratic;
+  }
+
+  // 切换 AI 面板
+  function toggleAIPanel() {
+    const panel = document.getElementById('aiPanel');
+    panel.classList.toggle('open');
+    
+    // 如果打开了面板且有配置，聚焦输入框
+    if (panel.classList.contains('open') && isAIConfigured()) {
+      setTimeout(() => {
+        document.getElementById('aiInput').focus();
+      }, 300);
+    }
+  }
+
+  // 输入框自动调整高度
+  function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 100) + 'px';
+  }
+
+  // 处理输入框按键
+  function handleAIInput(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendAIMessage();
+    }
+  }
+
+  // 快捷提问
+  function askAI(question) {
+    const panel = document.getElementById('aiPanel');
+    if (!panel.classList.contains('open')) {
+      panel.classList.add('open');
+    }
+    
+    document.getElementById('aiInput').value = question;
+    sendAIMessage();
+  }
+
+  // 发送消息
+  async function sendAIMessage() {
+    const input = document.getElementById('aiInput');
+    const message = input.value.trim();
+    
+    if (!message || aiLoading) return;
+
+    // 清空输入框
+    input.value = '';
+    input.style.height = 'auto';
+
+    // 隐藏欢迎信息
+    const welcomeEl = document.getElementById('aiWelcome');
+    if (welcomeEl) welcomeEl.style.display = 'none';
+
+    // 添加用户消息
+    addMessage('user', message);
+
+    // 添加加载状态
+    const loadingId = addLoadingMessage();
+
+    aiLoading = true;
+    document.getElementById('aiSendBtn').disabled = true;
+
+    try {
+      const response = await callAIAPI(message);
+      removeLoadingMessage(loadingId);
+      addMessage('assistant', response);
+    } catch (error) {
+      removeLoadingMessage(loadingId);
+      addErrorMessage('请求失败：' + error.message + '（请检查 API 配置和网络连接）');
+    }
+
+    aiLoading = false;
+    updateAIStatus();
+  }
+
+  // 添加消息
+  function addMessage(role, content) {
+    const container = document.getElementById('aiMessages');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'ai-message ' + role;
+    
+    // 简单的换行转段落
+    const formattedContent = content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+    
+    msgDiv.innerHTML = '<p>' + formattedContent + '</p>';
+    container.appendChild(msgDiv);
+    
+    // 滚动到底部
+    container.scrollTop = container.scrollHeight;
+    
+    aiMessages.push({ role, content });
+  }
+
+  // 添加加载消息
+  function addLoadingMessage() {
+    const container = document.getElementById('aiMessages');
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'ai-typing';
+    loadingDiv.id = 'ai-loading-' + Date.now();
+    loadingDiv.innerHTML = '<span></span><span></span><span></span>';
+    container.appendChild(loadingDiv);
+    container.scrollTop = container.scrollHeight;
+    return loadingDiv.id;
+  }
+
+  // 移除加载消息
+  function removeLoadingMessage(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  // 添加错误消息
+  function addErrorMessage(message) {
+    const container = document.getElementById('aiMessages');
+    const errDiv = document.createElement('div');
+    errDiv.className = 'ai-error';
+    errDiv.textContent = '⚠️ ' + message;
+    container.appendChild(errDiv);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  // 调用 AI API
+  async function callAIAPI(userMessage) {
+    const config = getAIConfig();
+    
+    // 构建系统提示词
+    let systemPrompt = '你是一个知识渊博、善于引导思考的助手。用户正在学习一条知识，你需要基于这条知识回答用户的问题。';
+    
+    if (config.socratic) {
+      systemPrompt += `
+
+请采用苏格拉底式的问答风格：
+1. 先直接回答用户的问题，给出准确的信息
+2. 然后提出1-2个引导性的问题，帮助用户深入思考
+3. 鼓励批判性思维，提醒用户验证信息来源
+4. 回答要简洁明了，不要过于冗长
+5. 如果不确定，就说不确定，不要编造内容`;
+    }
+
+    // 构建当前知识的上下文
+    let contextMessage = '';
+    if (currentKnowledge) {
+      contextMessage = `
+当前正在学习的知识：
+【标题】${currentKnowledge.title}
+【分类】${currentKnowledge.category}
+【内容】${currentKnowledge.content}
+【来源】${currentKnowledge.source.name}（${currentKnowledge.source.url}）
+【可信度】${currentKnowledge.source.reliability}
+【批判性思考问题】${currentKnowledge.questions.join('；')}
+
+请基于以上知识回答用户的问题。如果用户问的内容超出了这条知识的范围，你可以补充相关信息，但要明确说明哪些是知识原文中的内容，哪些是补充内容。`;
+    }
+
+    const messages = [
+      { role: 'system', content: systemPrompt + contextMessage }
+    ];
+
+    // 添加最近的对话历史（保留最近 6 条，避免 token 过多）
+    const recentMessages = aiMessages.slice(-6);
+    for (const msg of recentMessages) {
+      messages.push({ role: msg.role, content: msg.content });
+    }
+    messages.push({ role: 'user', content: userMessage });
+
+    // 调用 API
+    const baseUrl = config.baseUrl.replace(/\/$/, '');
+    const usingDefault = isUsingDefaultAI();
+
+    if (usingDefault) {
+      // 通过本地代理调用 Pollinations（避免 CORS 和地域限制）
+      let historyText = '';
+      for (const msg of recentMessages) {
+        historyText += (msg.role === 'user' ? '用户' : '助手') + '：' + msg.content + '\n';
+      }
+      
+      const fullPrompt = systemPrompt + contextMessage + '\n\n' + historyText + '用户：' + userMessage + '\n\n助手：';
+      
+      // 使用本地代理端点
+      const proxyUrl = `/api/ask?prompt=${encodeURIComponent(fullPrompt)}&model=${config.model}`;
+      
+      const response = await fetch(proxyUrl, { method: 'GET' });
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || `HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.content && data.content.trim()) {
+        return data.content.trim();
+      }
+      throw new Error('AI 未返回有效内容');
+    
+    } else {
+      // 自定义 OpenAI 兼容接口：POST 到 /chat/completions
+      const endpoint = `${baseUrl}/chat/completions`;
+
+      const headers = { 'Content-Type': 'application/json' };
+      if (config.apiKey) {
+        headers['Authorization'] = `Bearer ${config.apiKey}`;
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          model: config.model,
+          messages: messages,
+          temperature: config.socratic ? 0.7 : 0.5,
+          max_tokens: 800
+        })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text().catch(() => '');
+        let errMsg = `HTTP ${response.status}`;
+        try {
+          const errorData = JSON.parse(errorText);
+          errMsg = errorData.error?.message || errMsg;
+        } catch(e) {
+          if (errorText) errMsg = errorText.substring(0, 200);
+        }
+        throw new Error(errMsg);
+      }
+
+      const data = await response.json();
+      if (data.choices && data.choices[0] && data.choices[0].message) {
+        return data.choices[0].message.content.trim();
+      }
+      if (data.choices && data.choices[0] && data.choices[0].text) {
+        return data.choices[0].text.trim();
+      }
+      throw new Error('响应格式错误');
+    }
+  }
+
+  // 切换知识时重置 AI 对话上下文
+  function resetAIContext() {
+    aiMessages = [];
+    const container = document.getElementById('aiMessages');
+    
+    // 保留欢迎信息
+    const welcomeEl = document.getElementById('aiWelcome');
+    if (welcomeEl) {
+      container.innerHTML = '';
+      container.appendChild(welcomeEl);
+      welcomeEl.style.display = 'block';
+    }
+  }
+
+  // ========== 扩展原始功能 ==========
+  
+  // Toast 提示
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(44, 40, 37, 0.9);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.3s';
+      setTimeout(() => toast.remove(), 300);
+    }, 2500);
+  }
+
+  // 启动
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
