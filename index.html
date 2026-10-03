@@ -1787,7 +1787,7 @@
     const usingDefault = isUsingDefaultAI();
 
     if (usingDefault) {
-      // 通过本地代理调用 Pollinations（避免 CORS 和地域限制）
+      // 直接调用 Pollinations AI（支持 CORS，无需代理）
       let historyText = '';
       for (const msg of recentMessages) {
         historyText += (msg.role === 'user' ? '用户' : '助手') + '：' + msg.content + '\n';
@@ -1795,19 +1795,17 @@
       
       const fullPrompt = systemPrompt + contextMessage + '\n\n' + historyText + '用户：' + userMessage + '\n\n助手：';
       
-      // 使用本地代理端点
-      const proxyUrl = `/api/ask?prompt=${encodeURIComponent(fullPrompt)}&model=${config.model}`;
+      const aiUrl = `https://text.pollinations.ai/${encodeURIComponent(fullPrompt)}?model=${config.model}`;
       
-      const response = await fetch(proxyUrl, { method: 'GET' });
+      const response = await fetch(aiUrl, { method: 'GET' });
 
       if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || `HTTP ${response.status}`);
+        throw new Error(`HTTP ${response.status}`);
       }
 
-      const data = await response.json();
-      if (data.content && data.content.trim()) {
-        return data.content.trim();
+      const content = await response.text();
+      if (content && content.trim()) {
+        return content.trim();
       }
       throw new Error('AI 未返回有效内容');
     
