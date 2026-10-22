@@ -8,7 +8,7 @@
 |---|---|
 | 交接日期 | 2026-10-22（本机系统日期） |
 | 站点内容版本 | `61a7e99`（2026-10-04 05:13 UTC 推送，当前线上的内容基线） |
-| 交接资料提交 | `000c839`（本卡、检测报告、自检脚本；不改变站点内容） |
+| 交接资料提交 | 自 `000c839` 起（本卡、检测报告、自检脚本；不改变站点内容，后续修正见提交历史） |
 | 分支 / 远程 | `main` / `https://github.com/Pineapple314-art/daily-knowledge`（public） |
 | 线上地址 | https://pineapple314-art.github.io/daily-knowledge/ |
 | 工作区状态 | `git status` 干净，已同步 `origin/main` |
