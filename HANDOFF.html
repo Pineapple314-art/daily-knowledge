@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>交接卡 · 杂学志（每日杂学）· 2026-10-22</title>
+<style>
+  :root {
+    --ink: #1b1b1f;
+    --muted: #6a6a73;
+    --line: #e3e0d8;
+    --paper: #ffffff;
+    --bg: #f4f1ea;
+    --navy: #0f3460;
+    --red: #c73650;
+    --green: #2f6f4e;
+    --amber: #9a6b1f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    font-size: 15px;
+  }
+  .page {
+    max-width: 960px;
+    margin: 32px auto 80px;
+    background: var(--paper);
+    padding: 56px 64px 72px;
+    box-shadow: 0 12px 48px rgba(20, 25, 40, 0.10);
+  }
+  header {
+    border-top: 5px solid var(--navy);
+    padding-top: 24px;
+    margin-bottom: 36px;
+  }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--red);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: "Noto Serif SC", "Songti SC", SimSun, serif;
+    font-size: 38px;
+    line-height: 1.25;
+    color: var(--navy);
+    margin: 8px 0 6px;
+    letter-spacing: -0.5px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    font-family: "Noto Serif SC", serif;
+  }
+  .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-top: 22px;
+    padding: 14px 18px;
+    background: #faf8f4;
+    border-left: 3px solid var(--red);
+    font-size: 13px;
+  }
+  .meta-strip b { color: var(--navy); font-weight: 600; }
+  .meta-strip span { color: var(--muted); }
+
+  h2 {
+    font-family: "Noto Serif SC", serif;
+    font-size: 23px;
+    color: var(--navy);
+    margin: 46px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .no { color: var(--red); margin-right: 10px; font-family: Georgia, serif; }
+  h3 {
+    font-size: 16px;
+    color: var(--navy);
+    margin: 26px 0 10px;
+  }
+  p { margin: 10px 0; }
+  .lead { color: var(--muted); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 18px;
+    font-size: 13.5px;
+  }
+  th {
+    text-align: left;
+    background: #f6f3ec;
+    color: var(--navy);
+    font-weight: 600;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--line);
+    vertical-align: top;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  code {
+    font-family: "Cascadia Code", Consolas, monospace;
+    background: #f3f0e9;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12.5px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1px 7px;
+    border-radius: 2px;
+    vertical-align: 1px;
+    margin-right: 6px;
+  }
+  .fact { background: #e8f1ec; color: var(--green); }
+  .plan { background: #f0eaf7; color: #5b3f86; }
+  .unknown { background: #f6efe0; color: var(--amber); }
+
+  .callout {
+    padding: 16px 20px;
+    margin: 18px 0;
+    background: #faf8f4;
+    border-left: 3px solid var(--navy);
+    font-size: 14px;
+  }
+  .callout.warn { border-left-color: var(--red); background: #fdf5f6; }
+  .callout b { color: var(--navy); }
+  .callout.warn b { color: var(--red); }
+
+  ul, ol { margin: 10px 0 10px 22px; }
+  li { margin: 6px 0; }
+  .tight li { margin: 3px 0; }
+
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li {
+    padding-left: 26px;
+    position: relative;
+    margin: 7px 0;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid #b9b3a6;
+    border-radius: 2px;
+  }
+
+  .kpi {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 18px 0 8px;
+  }
+  .kpi div {
+    border: 1px solid var(--line);
+    padding: 14px 12px;
+    text-align: center;
+    background: #fcfbf8;
+  }
+  .kpi .v {
+    font-family: Georgia, "Noto Serif SC", serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .kpi .v.red { color: var(--red); }
+  .kpi .l {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  pre {
+    background: #1e2430;
+    color: #e8e6df;
+    padding: 14px 18px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: "Cascadia Code", Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin: 12px 0;
+  }
+  .footnote {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .one-line {
+    margin-top: 26px;
+    padding: 18px 22px;
+    background: var(--navy);
+    color: #fff;
+    font-family: "Noto Serif SC", serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .one-line b { color: #f2b8c2; }
+
+  @media (max-width: 720px) {
+    .page { margin: 0; padding: 28px 20px 48px; }
+    h1 { font-size: 29px; }
+    table { font-size: 12.5px; }
+    th, td { padding: 8px 9px; }
+    .kpi { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; padding: 24px 32px; max-width: none; }
+    h2 { page-break-after: avoid; }
+    table, .callout, .one-line { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="kicker">Handoff Card · 交接卡</div>
+  <h1>杂学志（每日杂学）</h1>
+  <div class="subtitle">随机知识推荐网站 · 交付说明与验收交接</div>
+  <div class="meta-strip">
+    <span>交接日期 <b>2026-10-22</b></span>
+    <span>代码版本 <b>61a7e99</b></span>
+    <span>分支 <b>main</b></span>
+    <span>线上 <b>pineapple314-art.github.io/daily-knowledge</b></span>
+    <span>工作区 <b>干净，已同步</b></span>
+  </div>
+</header>
+
+<div class="callout">
+  <b>阅读约定：</b>
+  <span class="tag fact">事实</span>有文件、命令输出或 HTTP 响应可核对；
+  <span class="tag plan">计划</span>尚未执行；
+  <span class="tag unknown">未知</span>未核实，不猜。
+</div>
+
+<h2><span class="no">01</span>目标</h2>
+<p class="lead">用户原始诉求，按提出顺序：</p>
+<ol class="tight">
+  <li>每日随机推荐各领域知识，无偏好设置、无智能推荐。</li>
+  <li>每日通知，自动随机推荐。</li>
+  <li>知识有可靠来源、正确、不糊弄。</li>
+  <li>通过设置或提问模式锻炼批判性思维。</li>
+  <li>持续扩充知识库，冷热均可，条目不能太少。</li>
+  <li>增加 AI 接口，可针对知识提问。</li>
+  <li>公开网站，可用 Git 部署。</li>
+  <li>杂志感视觉、个性化字体、主色鲜明有记忆点。</li>
+  <li>（曾讨论）上架 iOS，后选择先做公开网站。</li>
+</ol>
+
+<h2><span class="no">02</span>交付物清单 <span class="tag fact">事实</span></h2>
+<table>
+  <thead><tr><th>文件</th><th class="num">大小</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>index.html</code></td><td class="num">54,113 B</td><td>页面结构 + 样式 + 交互（单文件）</td></tr>
+    <tr><td><code>knowledge.js</code></td><td class="num">128,395 B</td><td>知识库数据（120 条）</td></tr>
+    <tr><td><code>README.md</code></td><td class="num">1,781 B</td><td>项目说明（内容已过期）</td></tr>
+    <tr><td><code>server.py</code></td><td class="num">2,935 B</td><td>本地静态服务器 + AI 代理（8090）</td></tr>
+    <tr><td><code>api/ask.py</code></td><td class="num">2,296 B</td><td>Vercel Serverless AI 代理（未接入前端）</td></tr>
+    <tr><td><code>vercel.json</code></td><td class="num">320 B</td><td>Vercel 配置（部署状态未知）</td></tr>
+    <tr><td><code>.gitignore</code></td><td class="num">192 B</td><td>Git 忽略规则</td></tr>
+    <tr><td><code>.trae/skills/knowledge-expander/SKILL.md</code></td><td class="num">4,537 B</td><td>知识库扩充技能</td></tr>
+    <tr><td><code>tools/check-knowledge.js</code></td><td class="num">新增</td><td>知识库自检脚本</td></tr>
+    <tr><td><code>tools/check-links.js</code></td><td class="num">新增</td><td>来源链接检测脚本</td></tr>
+    <tr><td><code>docs/link-check-2026-10-22.csv</code></td><td class="num">新增</td><td>120 条链接检测结果</td></tr>
+    <tr><td><code>HANDOFF.md / HANDOFF.html</code></td><td class="num">新增</td><td>本交接卡（Markdown / 阅读版）</td></tr>
+  </tbody>
+</table>
+
+<h3>知识库实测</h3>
+<div class="kpi">
+  <div><div class="v">120</div><div class="l">知识条目</div></div>
+  <div><div class="v">33</div><div class="l">领域分类</div></div>
+  <div><div class="v red">86</div><div class="l">冷知识</div></div>
+  <div><div class="v">34</div><div class="l">热知识</div></div>
+</div>
+<ul class="tight">
+  <li>ID 1–120 连续，无重复 ID、无重复标题。</li>
+  <li>每条 3 个批判性思考问题；难度 1–5；正文 100–195 字（均值 154）。</li>
+  <li>唯一来源名称 120 个；唯一来源 URL 118 个（3 条共用 science.org 首页）。</li>
+  <li>可信度标注：高 109、中高 9、中 2。</li>
+</ul>
+
+<h3>线上状态（2026-10-22 实测）</h3>
+<table>
+  <thead><tr><th>检查</th><th>结果</th></tr></thead>
+  <tbody>
+    <tr><td>首页 GET</td><td><b>200</b>，54,113 B，标题「杂学志 · MISC Magazine」</td></tr>
+    <tr><td>线上 knowledge.js</td><td><b>200</b>，128,395 B，含 120 个 <code>id:</code></td></tr>
+    <tr><td>仓库</td><td>public，默认分支 main，最后推送 2026-10-04T05:13:51Z</td></tr>
+    <tr><td>AI 上游</td><td><b>200</b>，<code>text.pollinations.ai</code> 返回正常文本</td></tr>
+  </tbody>
+</table>
+<div class="callout warn">
+  以上只证明「页面可访问、数据量为 120、AI 上游可达」。<b>未证明</b>页面交互、移动端表现、字体加载和完整 AI 问答流程。
+</div>
+
+<h2><span class="no">03</span>已完成及证据</h2>
+<table>
+  <thead><tr><th>需求</th><th>实现位置</th><th>证据 / 验证程度</th></tr></thead>
+  <tbody>
+    <tr><td>随机推荐</td><td><code>randomKnowledge()</code>、<code>getRandomKnowledge()</code></td><td>代码静态核对；未做本次浏览器回归</td></tr>
+    <tr><td>每日固定一篇</td><td><code>getDailyKnowledge()</code></td><td>按日期取模；静态核对</td></tr>
+    <tr><td>分类筛选</td><td><code>filterByCategory()</code></td><td>静态核对</td></tr>
+    <tr><td>已读去重</td><td><code>viewedIds</code> + localStorage</td><td>静态核对</td></tr>
+    <tr><td>每日通知</td><td>Notification API + setTimeout</td><td>静态核对；未运行时测试；限制见 §05</td></tr>
+    <tr><td>来源展示</td><td>每条 source 三字段</td><td>字段完整率 100%</td></tr>
+    <tr><td>批判性思考</td><td>每条 3 个 questions，可折叠</td><td>数据完整；交互未回归</td></tr>
+    <tr><td>AI 问答</td><td><code>callAIAPI()</code> 直连 Pollinations</td><td>上游 200；应用内流程未回归</td></tr>
+    <tr><td>杂志感视觉</td><td>深蓝 + 朱红、Playfair / Noto Serif SC</td><td>线上标题与文件大小匹配；无截图验收</td></tr>
+    <tr><td>公开发布</td><td>GitHub Pages</td><td>HTTP 200；仓库 public</td></tr>
+    <tr><td>版本管理</td><td>Git，5 次提交</td><td>HEAD == origin/main</td></tr>
+    <tr><td>扩充技能</td><td><code>knowledge-expander/SKILL.md</code></td><td>文件存在并已提交</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="no">04</span>未完成 / 未做 <span class="tag fact">事实</span></h2>
+<table>
+  <thead><tr><th>项</th><th>现状</th></tr></thead>
+  <tbody>
+    <tr><td><b>每日自动更新知识库</b></td><td>未实现。无 GitHub Actions、无定时任务、无抓取脚本；120 条为一次性写入。</td></tr>
+    <tr><td><b>iOS 上架</b></td><td>未开始。无 Capacitor / Xcode 工程、无 Apple 配置。</td></tr>
+    <tr><td><b>PWA / 离线</b></td><td>未实现。无 manifest、无 service worker。</td></tr>
+    <tr><td><b>README 过期</b></td><td>仍写「90+ 条知识」，实际 120 条（第 8、48 行）。</td></tr>
+    <tr><td><b>死链</b></td><td>118 个 URL 中 23 个 404、9 个超时未修。</td></tr>
+    <tr><td><b>来源精度</b></td><td>3 条共用站点首页；1 条维基百科标「高」；1 条学会首页。</td></tr>
+    <tr><td><b>测试 / CI</b></td><td>无自动化测试、无 CI。</td></tr>
+    <tr><td><b>移动端 / 跨浏览器</b></td><td>本次未验证。</td></tr>
+    <tr><td><b>Vercel 部署</b></td><td>配置在仓库，部署状态未核实。</td></tr>
+    <tr><td><b>自定义 AI Key</b></td><td>代码存在，未实测。</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="no">05</span>已知问题与风险</h2>
+
+<h3>5.1 链接检测 <span class="tag fact">事实</span></h3>
+<p class="lead">方法：GET、跟随重定向、10 秒超时、并发 8、Chrome UA。</p>
+<table>
+  <thead><tr><th>结果</th><th class="num">数量</th><th>解读</th></tr></thead>
+  <tbody>
+    <tr><td>2xx OK</td><td class="num">56</td><td>可访问</td></tr>
+    <tr><td>403</td><td class="num">29</td><td>多为出版商反爬，<b>不等于失效</b></td></tr>
+    <tr><td>404</td><td class="num">23</td><td>较可能是死链，需人工复核</td></tr>
+    <tr><td>超时</td><td class="num">9</td><td>网络或站点限制，结论未知</td></tr>
+    <tr><td>405</td><td class="num">1</td><td>方法不被允许，需人工打开</td></tr>
+  </tbody>
+</table>
+<p><b>404 条目：</b>1、2、4、10、13、16、22、30、32、39、44、45、47、52、55、62、63、64、67、68、69、79、82。</p>
+<p><b>超时条目：</b>14、15、18、19、23、48、97、99、110。</p>
+<p class="lead">逐条结果见 <code>docs/link-check-2026-10-22.csv</code>。</p>
+
+<h3>5.2 来源质量 <span class="tag fact">事实</span></h3>
+<ul class="tight">
+  <li><b>#23 破窗谬误</b>：来源为维基百科，可信度却标「高」。</li>
+  <li><b>#71 蜗牛可以睡三年</b>：URL 为皇家学会首页，非具体文章。</li>
+  <li><b>#83 / #86 / #88</b>：共用 <code>science.org</code> 首页，无法定位具体研究。</li>
+  <li>部分 404 为明显旧路径（NASA 旧栏目、Scientific American 旧文章）。</li>
+</ul>
+
+<h3>5.3 产品与技术限制</h3>
+<table>
+  <thead><tr><th>风险</th><th>说明</th><th>性质</th></tr></thead>
+  <tbody>
+    <tr><td>通知只在页面打开时有效</td><td>计时器是页面内 <code>setTimeout</code>，关闭标签页后不会触发</td><td>代码逻辑事实；未运行时验证</td></tr>
+    <tr><td>AI 依赖第三方免费接口</td><td>无 Key、无 SLA；限额、条款、长期可用性未知</td><td>依赖事实；可用性未知</td></tr>
+    <tr><td>字体依赖 Google Fonts</td><td>外链加载，部分地区可能慢或不可达</td><td>依赖事实；实际可用性未知</td></tr>
+    <tr><td>事实准确性未逐条复核</td><td>有链接 ≠ 结论正确；本次未独立复核</td><td>未知</td></tr>
+    <tr><td>单文件页面较大</td><td>54 KB，样式与逻辑内联</td><td>事实，影响有限</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="no">06</span>否决 / 放弃的方案及原因</h2>
+<table>
+  <thead><tr><th>方案</th><th>处理</th><th>原因</th><th>可核对证据</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Vercel + Python Serverless 代理</td>
+      <td>放弃作为主部署</td>
+      <td>前端可直连 Pollinations（实测 200），静态托管更简单、免费，代理多一层故障点</td>
+      <td><code>api/ask.py</code>、<code>vercel.json</code> 仍在；前端无 <code>/api/ask</code> 调用</td>
+    </tr>
+    <tr>
+      <td>本地 Python 代理承载线上流量</td>
+      <td>放弃</td>
+      <td>同上；<code>server.py</code> 仅保留本地开发</td>
+      <td>前端调用路径不经过 <code>/api/ask</code></td>
+    </tr>
+    <tr>
+      <td>iOS 原生打包（Capacitor 等）</td>
+      <td>未执行</td>
+      <td>用户选择先做公开网站；需 Apple Developer 账号、Xcode 与审核，成本周期未核实</td>
+      <td>仓库无 iOS 工程文件</td>
+    </tr>
+    <tr>
+      <td>PWA（manifest + SW）</td>
+      <td>未执行</td>
+      <td>用户未选择；当时优先公开网站与内容</td>
+      <td>无 manifest、无 service worker</td>
+    </tr>
+  </tbody>
+</table>
+<div class="callout">
+  「否决」是当时的选择，不代表技术上行不通。Vercel / PWA / iOS 仍可作为后续路线。
+</div>
+
+<h2><span class="no">07</span>下一步与验收 <span class="tag plan">计划</span></h2>
+
+<h3>P0 · 内容可信度收尾</h3>
+<ol class="tight">
+  <li>逐条修复 23 个 404：优先 DOI / 出版商文章页；找不到则换成同主题权威来源并同步 <code>source.name</code>。</li>
+  <li>人工打开 9 个超时链接，能访问的保留备注，不能访问的替换。</li>
+  <li>修复来源精度：#23 换维基；#71 换具体论文；#83/#86/#88 换具体文章或 DOI。</li>
+  <li>更新 README：条目数、分类数、<code>tools/</code> 与 <code>docs/</code> 说明。</li>
+</ol>
+<p><b>验收：</b></p>
+<pre>node tools/check-knowledge.js knowledge.js
+node tools/check-links.js knowledge.js docs/link-check-&lt;日期&gt;.csv</pre>
+<ul class="tight">
+  <li>自检脚本退出码 0：120 条、ID 连续、字段缺失 0。</li>
+  <li>新 CSV 中 404 为 0；403 / 超时逐条有处理记录。</li>
+  <li>随机抽 10 条打开来源，均能定位到具体文章/报告，而非站点首页。</li>
+  <li>README 数字与脚本输出一致。</li>
+</ul>
+
+<h3>P1 · 质量保障</h3>
+<ol class="tight" start="5">
+  <li>GitHub Actions：push 跑知识库自检；每周跑链接检测并上传 CSV。</li>
+  <li>Playwright 冒烟：加载 → 连点「下一篇」10 次 → 分类筛选 → 展开思考 → 打开 AI 面板。</li>
+</ol>
+<p><b>验收：</b>Actions 绿灯；每周产出链接报告；冒烟测试在 CI 通过。</p>
+
+<h3>P2 · 每日更新（需先定方案）</h3>
+<ol class="tight" start="7">
+  <li>设计每日新增流程：A. 人工审核 + 半自动抓取（推荐，质量可控）；B. 定时自动写入（快，但幻觉与来源风险高）。</li>
+</ol>
+<p><b>验收（方案确定后细化）：</b>每日新增数量、来源等级、去重规则、失败告警、人工复核记录。</p>
+
+<h3>P3 · 分发形态（需用户决策）</h3>
+<ol class="tight" start="8">
+  <li>PWA：补 manifest + service worker，支持「添加到主屏幕」与离线缓存。</li>
+  <li>iOS：评估 Capacitor 打包；确认 Apple Developer 账号与审核可行性。</li>
+  <li>Vercel：如需，验证 <code>api/ask.py</code> 部署与自定义域名。</li>
+</ol>
+
+<h2><span class="no">08</span>未知项（不猜）</h2>
+<ul class="tight">
+  <li>GitHub Pages 的具体构建设置（root + main）未在设置页核对；仅知线上 200 且内容与本地一致。</li>
+  <li>120 条知识的事实准确性未逐条独立复核；链接可达不等于结论正确。</li>
+  <li>用户期望的「每日更新」频率、每日新增数量、可接受的人工成本。</li>
+  <li>Apple Developer 账号是否已有、费用与审核周期。</li>
+  <li>Vercel 是否已部署过（仓库有配置，无部署记录可查）。</li>
+  <li>Google Fonts 与 Pollinations 在目标用户地区的实际可用性。</li>
+  <li>Safari / 微信内置浏览器 / 低端安卓机上的表现。</li>
+</ul>
+
+<h2><span class="no">09</span>复现与手动验收</h2>
+<h3>本地运行</h3>
+<pre>python server.py
+# 打开 http://localhost:8090</pre>
+<p class="lead"><code>server.py</code> 提供静态文件与 <code>/api/ask</code> 代理；当前前端直接调用 Pollinations，不经过该代理。</p>
+
+<h3>发布</h3>
+<pre>git add -A
+git commit -m "..."
+git push origin main</pre>
+<p class="lead">线上由 GitHub Pages 提供；本次观察推送后线上内容与本地一致。</p>
+
+<h3>手动验收清单</h3>
+<ul class="checklist">
+  <li>打开线上地址，刊头、标题、日期正常显示</li>
+  <li>连点「下一篇」10 次，内容变化且尽量不重复</li>
+  <li>点击分类，随机范围跟随分类</li>
+  <li>展开「批判性思考」，显示 3 个问题</li>
+  <li>点击来源链接，能打开对应页面</li>
+  <li>AI 面板提问，能返回回答（网络需可访问 Pollinations）</li>
+  <li>开启通知后刷新，开关状态保留</li>
+  <li>手机宽度下无横向滚动、按钮可点</li>
+</ul>
+
+<div class="one-line">
+  一句话交接：网站已公开可用、知识库 120 条、视觉已杂志化；<b>内容层仍有 23 条死链与若干弱来源待修，每日更新与 iOS 均未开始。</b>
+</div>
+
+<div class="footnote">
+  交接卡生成日期 2026-10-22 · 对应代码版本 61a7e99 · 证据文件：<code>docs/link-check-2026-10-22.csv</code>、<code>tools/check-knowledge.js</code>、<code>tools/check-links.js</code><br>
+  本卡仅陈述可核对事实与明确计划；未核实项已标注「未知」。
+</div>
+
+</div>
+</body>
+</html>
