@@ -16,6 +16,9 @@ Thumbs.db
 # 本地服务器缓存
 .trae-html-share-packages/
 
+# 交接打包产物
+daily-knowledge-handoff-*.zip
+
 # 环境变量
 .env
 .env.local
